@@ -3,6 +3,7 @@ backups/
 
 # Downloaded / converted videos (copyrighted content stays local)
 oled-video/videos/
+cyd-stream/videos/
 
 # Python
 .venv/
@@ -14,6 +15,7 @@ __pycache__/
 oled-mario/oled_mario
 oled-mario/preview
 oled-video/oled_video
+cyd-stream/clip_server
 
 # Third-party PDFs: linked from docs/GUIDE.md instead
 docs/*.pdf

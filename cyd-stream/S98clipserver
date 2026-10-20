@@ -1,0 +1,27 @@
+#!/bin/sh
+# /etc/init.d/S98clipserver: serve /root/videos/stream.bin to the CYD video-clip player at boot.
+# Install:  cp /root/S98clipserver /etc/init.d/ && chmod +x /etc/init.d/S98clipserver
+# Change the video: copy another clip.bin to /root/videos/stream.bin and run "restart".
+PIDFILE=/var/run/clip_server.pid
+CLIP=/root/videos/stream.bin
+PORT=8765
+
+start() {
+    printf "Starting clip_server: "
+    start-stop-daemon -S -b -m -p "$PIDFILE" -x /root/clip_server -- "$CLIP" "$PORT"
+    echo "OK"
+}
+
+stop() {
+    printf "Stopping clip_server: "
+    start-stop-daemon -K -q -p "$PIDFILE"
+    rm -f "$PIDFILE"
+    echo "OK"
+}
+
+case "$1" in
+    start) start ;;
+    stop) stop ;;
+    restart) stop; sleep 1; start ;;
+    *) echo "Usage: $0 {start|stop|restart}"; exit 1 ;;
+esac

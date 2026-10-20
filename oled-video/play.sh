@@ -15,7 +15,9 @@ shift
 
 case "$SRC" in
 http*)
-    SRC=$(.venv/bin/yt-dlp --cache-dir .cache/yt-dlp --no-playlist --no-progress \
+    # YouTube needs a JavaScript runtime for many videos: yt-dlp uses deno by default, node if told to
+    JS=""; command -v node >/dev/null && JS="--js-runtimes node"
+    SRC=$(.venv/bin/yt-dlp --cache-dir .cache/yt-dlp --no-playlist --no-progress $JS \
         -f "bv*[height<=360][ext=mp4]/bv*[height<=360]/b" -P videos -o "%(id)s.%(ext)s" \
         --print after_move:filepath "$SRC")
     ;;

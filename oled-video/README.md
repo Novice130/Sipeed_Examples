@@ -75,7 +75,10 @@ format, and the wall-clock player are explained in [../docs/GUIDE.md](../docs/GU
 
 ## Notes
 
-- YouTube changes often. If downloads fail, update yt-dlp: `.venv/bin/pip install -U yt-dlp`.
-  yt-dlp may warn that it wants a JavaScript runtime ([deno](https://github.com/yt-dlp/yt-dlp/wiki/EJS));
-  low-resolution formats still download without one.
+- Many YouTube videos (official channels especially) only download with a JavaScript runtime:
+  without one yt-dlp says *"This video is not available"* or *"Requested format is not available"*.
+  Install [Node.js](https://nodejs.org) or [deno](https://github.com/yt-dlp/yt-dlp/wiki/EJS);
+  `play.sh` passes `--js-runtimes node` automatically when `node` is on your PATH, and
+  `requirements.txt` includes the `yt-dlp-ejs` helper it needs.
+- YouTube changes often. If downloads fail, update yt-dlp: `.venv/bin/pip install -U yt-dlp yt-dlp-ejs`.
 - Only download and play videos you have the right to use.

@@ -1,0 +1,25 @@
+#!/bin/sh
+# /etc/init.d/S99oledmario: start the OLED Mario demo at boot (Buildroot init on the NanoKVM).
+# Install:  cp /root/S99oledmario /etc/init.d/ && chmod +x /etc/init.d/S99oledmario
+# Expects /root/oled-on.sh and /root/oled_mario (./build.sh deploy copies all three).
+PID=/var/run/oled_mario.pid
+case "$1" in
+start)
+    /root/oled-on.sh
+    start-stop-daemon -S -b -m -p $PID -x /root/oled_mario -- mario
+    ;;
+stop)  # SIGTERM makes oled_mario blank the panel; "clear" also switches it off
+    start-stop-daemon -K -q -p $PID
+    rm -f $PID
+    sleep 1
+    /root/oled_mario clear >/dev/null 2>&1
+    ;;
+restart)
+    "$0" stop
+    "$0" start
+    ;;
+*)
+    echo "usage: $0 start|stop|restart"
+    exit 1
+    ;;
+esac

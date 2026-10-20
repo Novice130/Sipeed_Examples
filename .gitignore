@@ -1,0 +1,21 @@
+# Device backups: full disk images of a personal NanoKVM, never publish
+backups/
+
+# Downloaded / converted videos (copyrighted content stays local)
+oled-video/videos/
+
+# Python
+.venv/
+.cache/
+__pycache__/
+*.pyc
+
+# Build outputs: rebuild with ./build.sh
+oled-mario/oled_mario
+oled-mario/preview
+oled-video/oled_video
+
+# Third-party PDFs: linked from docs/GUIDE.md instead
+docs/*.pdf
+
+.DS_Store

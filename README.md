@@ -22,6 +22,18 @@ Related: the colour versions of these demos (Mario, a video-clip player and more
 ESP32 "Cheap Yellow Display" live in
 [Novice130/ESP32-035-CYD-3.5-display](https://github.com/Novice130/ESP32-035-CYD-3.5-display).
 
+## Screenshots
+
+<table>
+<tr><td align="center"><a href="oled-mario/"><img src="oled-mario/docs/preview.png" width="380" alt="oled-mario"></a><br><b>oled-mario</b>: Mario on the 128x64 OLED</td>
+<td align="center"><a href="oled-video/"><img src="oled-video/docs/preview.png" width="380" alt="oled-video"></a><br><b>oled-video</b>: any video to 1-bit OLED frames</td></tr>
+<tr><td align="center"><a href="cyd-stream/"><img src="cyd-stream/docs/screenshot.png" width="380" alt="cyd-stream"></a><br><b>cyd-stream</b>: whole videos streamed to the ESP32 CYD</td>
+<td align="center"><a href="cyd-cloud-game/"><img src="cyd-cloud-game/docs/screens.png" width="380" alt="cyd-cloud-game"></a><br><b>cyd-cloud-game</b>: Flappy tribute played on the CYD over Wi-Fi</td></tr>
+</table>
+
+<sub>All images come from the real code: the OLED frames from the converter's output, the CYD frames from
+the server's preview mode and the clip checker. No copyrighted video is used in this repo.</sub>
+
 ## Hardware
 
 | Part | Notes |

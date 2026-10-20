@@ -3,6 +3,12 @@
 Turns any video into a dithered 1-bit 128x64 stream and plays it on the SSD1306 OLED wired to a
 Sipeed NanoKVM Lite at up to 30 fps. No sound (the KVM has no speaker).
 
+<img src="docs/preview.png" alt="Source frames (left) and what the 128x64 OLED shows (right)" width="640">
+
+<sub>Left: source frames (footage of the [cyd-cloud-game](../cyd-cloud-game/) Flappy tribute). Right: the same
+frames after `convert.py --fill --enhance`, drawn as the OLED shows them: crop to 2:1, level stretch,
+contrast boost, 8x8 Bayer dither, 1 bit per pixel.</sub>
+
 Measured on a NanoKVM Lite while streaming a 13-minute video: **30 fps, 0 dropped frames**, ~8% CPU,
 under 200 KB of RAM, and the KVM web UI keeps working.
 

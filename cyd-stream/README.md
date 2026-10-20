@@ -11,6 +11,11 @@ video ──make_clip.py──▶ clip.bin (JPEG frames + 8-bit audio) ──scp
                                        CYD video-clip player ◀── Wi-Fi: "give me bytes X..Y"
 ```
 
+<img src="docs/screenshot.png" alt="A streamed clip frame as the CYD shows it" width="480">
+
+<sub>A frame of a streamed clip exactly as the CYD draws it (240x160 JPEG at quality 70, zoomed 2x),
+decoded by `check_clip.py --render` from footage of the [cyd-cloud-game](../cyd-cloud-game/) Flappy tribute.</sub>
+
 - **Any length, better quality:** a 4-minute clip at JPEG quality 70 is ~23 MB; the KVM has GBs free.
 - **The CYD stays in charge of time:** it plays on its own clock and asks for the byte ranges it
   needs, so pause, the light-sensor skip and looping work exactly as with a flash clip.

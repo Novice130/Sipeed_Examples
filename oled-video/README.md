@@ -3,6 +3,9 @@
 Turns any video into a dithered 1-bit 128x64 stream and plays it on the SSD1306 OLED wired to a
 Sipeed NanoKVM Lite at up to 30 fps. No sound (the KVM has no speaker).
 
+Measured on a NanoKVM Lite while streaming a 13-minute video: **30 fps, 0 dropped frames**, ~8% CPU,
+under 200 KB of RAM, and the KVM web UI keeps working.
+
 The KVM can't decode video in ~50 MB of free RAM, so the Mac does the heavy lifting and the KVM only
 pushes 1 KB frames to I2C:
 

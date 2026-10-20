@@ -136,7 +136,8 @@ for (int p = 0; p < 8; p++)
 ```
 
 **Speed:** a frame is ~1 KB on the wire, so at 400 kHz I2C a full refresh takes roughly 25 ms. That's
-enough for 30 fps if each frame is sent as a single write. If the bus runs at 100 kHz, expect ~10 fps.
+enough for 30 fps if each frame is sent as a single write (oled_video holds 30.0 fps with no dropped
+frames on the tested NanoKVM Lite). If the bus runs at 100 kHz, expect ~10 fps.
 `oled_mario test` prints how long one frame push takes on your board.
 
 **SH1106 (1.3") panels** have 132 columns of RAM and no horizontal addressing mode: write one page
@@ -166,9 +167,15 @@ can render OLED frames on the Mac for screenshots without hardware.
 Buildroot runs `/etc/init.d/S??*` in order at boot. [`oled-mario/S99oledmario`](../oled-mario/S99oledmario):
 
 ```sh
-start)  /root/oled-on.sh
-        start-stop-daemon -S -b -m -p /var/run/oled_mario.pid -x /root/oled_mario -- mario ;;
-stop)   start-stop-daemon -K -q -p /var/run/oled_mario.pid; ... oled_mario clear ;;
+start() {
+    /root/oled-on.sh
+    sleep 1        # give the OLED a moment after its VCC pin goes high, before the init sequence
+    start-stop-daemon -S -b -m -p "$PIDFILE" -x /root/oled_mario -- mario
+}
+stop() {
+    start-stop-daemon -K -q -p "$PIDFILE"; rm -f "$PIDFILE"
+    sleep 1; /root/oled_mario clear >/dev/null 2>&1
+}
 ```
 
 `-b` backgrounds it, `-m -p` writes a pid file so `stop` (and `oled-video/play.sh`) can find it.

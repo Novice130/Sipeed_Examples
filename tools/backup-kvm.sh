@@ -13,8 +13,9 @@ KVM="${KVM:-root@192.168.0.222}"
 OUT="${1:-$(dirname "$0")/../backups/$(date +%F)}"
 mkdir -p "$OUT" && cd "$OUT" || exit 1
 
-# everything up to the end of partition 2 (the root fs); the big exFAT data partition is skipped
-TOTAL=$(ssh "$KVM" 'P=/sys/block/mmcblk0/mmcblk0p2; echo $(( ($(cat $P/start) + $(cat $P/size)) / 2048 ))') || exit 1
+# everything up to the end of partition 2 (the root fs); the big exFAT data partition is skipped.
+# Round up: partitions don't have to end on a MiB boundary (the stock image's p2 doesn't).
+TOTAL=$(ssh "$KVM" 'P=/sys/block/mmcblk0/mmcblk0p2; echo $(( ($(cat $P/start) + $(cat $P/size) + 2047) / 2048 ))') || exit 1
 CH=1024  # MiB per chunk
 echo "backing up ${TOTAL} MiB from $KVM into $PWD"
 ssh "$KVM" 'fdisk -l /dev/mmcblk0' > partition-info.txt 2>&1

@@ -16,6 +16,8 @@ oled-mario/oled_mario
 oled-mario/preview
 oled-video/oled_video
 cyd-stream/clip_server
+cyd-cloud-game/flappy_server
+cyd-cloud-game/flappy_sim
 
 # Third-party PDFs: linked from docs/GUIDE.md instead
 docs/*.pdf

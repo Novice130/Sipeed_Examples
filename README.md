@@ -11,6 +11,7 @@ Copy any example folder into your own project. Each one is self-contained and ha
 | [`oled-mario/`](oled-mario/) | Self-playing Mario platformer on a 0.96" SSD1306 OLED (128x64, I2C). Starts at boot. |
 | [`oled-video/`](oled-video/) | Plays any video (a YouTube link or a local file) on the same OLED as dithered 1-bit 128x64 at up to 30 fps. |
 | [`cyd-stream/`](cyd-stream/) | Serves whole videos to an ESP32 Cheap Yellow Display over Wi-Fi: the KVM stores the video, the CYD becomes a Wi-Fi display (15 fps with sound). |
+| [`cyd-cloud-game/`](cyd-cloud-game/) | Cloud gaming: a Flappy Bird tribute runs on the KVM and streams to the ESP32 CYD at 25-30 fps; one button (the CYD's light sensor). |
 | [`tools/backup-kvm.sh`](tools/backup-kvm.sh) | Resumable, chunked backup of the KVM's system partitions over SSH. Run it first. |
 
 **How it all works, step by step (wiring, pin muxing, I2C from userspace, cross-compiling,
@@ -71,6 +72,7 @@ Then follow the example READMEs: [oled-mario](oled-mario/README.md) (autostart a
 ├── oled-mario/          # Mario on the OLED: oled_mario.cpp, mono.h, include/ (game engine), init script
 ├── oled-video/          # video player: convert.py (Mac), oled_video.cpp (KVM), play.sh
 ├── cyd-stream/          # clip_server: streams videos to the ESP32 CYD over Wi-Fi
+├── cyd-cloud-game/      # flappy_server: runs a game and streams it to the ESP32 CYD
 └── tools/backup-kvm.sh  # SD card backup over SSH
 ```
 
